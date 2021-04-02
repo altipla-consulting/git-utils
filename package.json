@@ -23,7 +23,8 @@
 		"onCommand:git-utils.unstage",
 		"onCommand:git-utils.ciPush",
 		"onCommand:git-utils.diffAll",
-		"onCommand:git-utils.diff"
+		"onCommand:git-utils.diff",
+		"onCommand:git-utils.ciUpdate"
 	],
 	"main": "./src/main.js",
 	"contributes": {
@@ -59,6 +60,10 @@
 			{
 				"command": "git-utils.diff",
 				"title": "Git: Diff Current File [altipla]"
+			},
+			{
+				"command": "git-utils.ciUpdate",
+				"title": "Git: CI Update [altipla]"
 			}
 		]
 	},
