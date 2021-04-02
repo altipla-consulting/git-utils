@@ -22,7 +22,8 @@
 		"onCommand:git-utils.unstageAll",
 		"onCommand:git-utils.unstage",
 		"onCommand:git-utils.ciPush",
-		"onCommand:git-utils.diffAll"
+		"onCommand:git-utils.diffAll",
+		"onCommand:git-utils.diff"
 	],
 	"main": "./src/main.js",
 	"contributes": {
@@ -54,6 +55,10 @@
 			{
 				"command": "git-utils.diffAll",
 				"title": "Git: Diff All Files [altipla]"
+			},
+			{
+				"command": "git-utils.diff",
+				"title": "Git: Diff Current File [altipla]"
 			}
 		]
 	},
