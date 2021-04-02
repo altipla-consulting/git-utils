@@ -4,9 +4,10 @@
 	"description": "",
 	"version": "0.0.1",
 	"publisher": "altipla",
+	"icon": "images/icon.png",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/altipla-consulting/git-utils.git"
+		"url": "https://github.com/altipla-consulting/git-utils.git"
 	},
 	"engines": {
 		"vscode": "^1.55.0"
