@@ -12,8 +12,8 @@ const SEPARATOR = '# --------------'
 
 
 module.exports = async function() {
-  console.log(await window.showWarningMessage('foo bar', 'foo', 'bar'))
   let lines = [
+    '',
     '',
     SEPARATOR,
     '# Please enter the commit message for your changes. Everything below',
