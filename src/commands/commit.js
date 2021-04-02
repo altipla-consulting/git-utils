@@ -2,6 +2,8 @@
 const path = require('path')
 const fs = require('fs')
 
+const { window } = require('vscode')
+
 const { gitRoot } = require('../paths')
 const { git, sh } = require('../exec')
 const { ensureOpen, showText } = require('../output')
@@ -10,7 +12,13 @@ const { ensureOpen, showText } = require('../output')
 const SEPARATOR = '# --------------'
 
 
-module.exports = async function() {
+module.exports = async function () {
+  let changes = await sh(['git', 'diff', '--cached'])
+  if (!changes.length) {
+    window.showWarningMessage('No changes to commit')
+    return
+  }
+
   let lines = [
     '',
     '',
