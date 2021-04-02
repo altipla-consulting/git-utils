@@ -51,8 +51,18 @@ function shpty(cmd, opts) {
     proc.on('exit', () => {
       output = output
         .split('\n')
-        .map(line => line === '' ? line : JSON.parse(line).data)
-        .map(line => stripColor(line))
+        .map(line => {
+          if (line === '') {
+            return {data: ''}
+          }
+
+          try {
+            return JSON.parse(line)
+          } catch (err) {
+            return {data: line}
+          }
+        })
+        .map(line => stripColor(line.data))
         .join('')
       resolve(output)
     })
