@@ -21,34 +21,39 @@
 		"onCommand:git-utils.amendCommit",
 		"onCommand:git-utils.unstageAll",
 		"onCommand:git-utils.unstage",
-		"onCommand:git-utils.ciPush"
+		"onCommand:git-utils.ciPush",
+		"onCommand:git-utils.diffAll"
 	],
 	"main": "./src/main.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "git-utils.add",
-				"title": "Git: Add... [ALTIPLA]"
+				"title": "Git: Add... [altipla]"
 			},
 			{
 				"command": "git-utils.commit",
-				"title": "Git: Commit [ALTIPLA]"
+				"title": "Git: Commit [altipla]"
 			},
 			{
 				"command": "git-utils.amendCommit",
-				"title": "Git: Amend Commit [ALTIPLA]"
+				"title": "Git: Amend Commit [altipla]"
 			},
 			{
 				"command": "git-utils.unstageAll",
-				"title": "Git: Reset (unstage) All [ALTIPLA]"
+				"title": "Git: Reset (unstage) All [altipla]"
 			},
 			{
 				"command": "git-utils.unstage",
-				"title": "Git: Reset (unstage) Current File [ALTIPLA]"
+				"title": "Git: Reset (unstage) Current File [altipla]"
 			},
 			{
 				"command": "git-utils.ciPush",
-				"title": "Git: CI Push [ALTIPLA]"
+				"title": "Git: CI Push [altipla]"
+			},
+			{
+				"command": "git-utils.diffAll",
+				"title": "Git: Diff All Files [altipla]"
 			}
 		]
 	},

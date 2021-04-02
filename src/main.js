@@ -21,6 +21,7 @@ function activate(context) {
 	registerCommand(context, 'git-utils.unstageAll', require('./commands/unstage-all'))
 	registerCommand(context, 'git-utils.unstage', require('./commands/unstage'))
 	registerCommand(context, 'git-utils.ciPush', require('./commands/ci-push'))
+	registerCommand(context, 'git-utils.diffAll', require('./commands/diff-all'))
 }
 
 function deactivate() { }
