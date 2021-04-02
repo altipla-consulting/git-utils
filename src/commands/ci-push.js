@@ -1,5 +1,5 @@
 
-const { shpty } = require('../exec')
+const { sh } = require('../exec')
 const { ensureOpen, showText } = require('../output')
 
 
@@ -8,7 +8,7 @@ module.exports = async function () {
   showText('$ ci push\n')
 
   try {
-    showText(await shpty(['ci', 'push']))
+    showText(await sh(['ci', 'push']))
   } catch (err) {
     showText(err.message)
   }
