@@ -4,7 +4,7 @@ build:
 
 release:
 	@mkdir -p dist
-  @vsce package -o dist
+	@vsce package -o dist
 
 major:
 	@vsce publish major
