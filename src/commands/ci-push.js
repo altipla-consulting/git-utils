@@ -1,17 +1,15 @@
 
 const { shpty } = require('../exec')
-
-const { window } = require('vscode')
+const { ensureOpen, showText } = require('../output')
 
 
 module.exports = async function () {
-  let output = window.createOutputChannel('Git Utils')
-  output.append('$ ci push\n')
-  output.show()
+  ensureOpen()
+  showText('$ ci push\n')
 
   try {
-    output.append(await shpty(['ci', 'push']))
+    showText(await shpty(['ci', 'push']))
   } catch (err) {
-    output.append(err.message)
+    showText(err.message)
   }
 }

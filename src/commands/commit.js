@@ -2,10 +2,9 @@
 const path = require('path')
 const fs = require('fs')
 
-const { window } = require('vscode')
-
 const { gitRoot } = require('../paths')
 const { git, sh } = require('../exec')
+const { ensureOpen, showText } = require('../output')
 
 
 const SEPARATOR = '# --------------'
@@ -33,11 +32,10 @@ module.exports = async function() {
   }
 
   fs.writeFileSync(file, msg, 'utf-8')
-  let output = window.createOutputChannel('Git Utils')
+  ensureOpen()
   try {
-    output.append(await sh(['git', 'commit', '-F', file]))
+    showText(await sh(['git', 'commit', '-F', file]))
   } catch (err) {
-    output.append(err.message)
+    showText(err.message)
   }
-  output.show()
 }
