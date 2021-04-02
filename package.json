@@ -3,6 +3,11 @@
 	"displayName": "Git Utils",
 	"description": "",
 	"version": "0.0.1",
+	"publisher": "altipla",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/altipla-consulting/git-utils.git"
+	},
 	"engines": {
 		"vscode": "^1.55.0"
 	},
