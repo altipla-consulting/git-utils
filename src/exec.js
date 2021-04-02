@@ -11,10 +11,11 @@ async function sh(cmd, opts) {
   if (!opts.cwd) {
     opts.cwd = workspace.workspaceFolders[0].uri.path
   }
+  opts.stdio = ['ignore', 'pipe', 'pipe']
 
   return new Promise((resolve, reject) => {
     let proc = cp.spawn(cmd[0], cmd.slice(1), opts)
-  
+
     let output = ''
     proc.stdout.on('data', data => output += data)
     proc.stderr.on('data', data => output += data)
