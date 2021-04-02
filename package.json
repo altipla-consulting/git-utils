@@ -2,7 +2,7 @@
 	"name": "git-utils",
 	"displayName": "Git Utils",
 	"description": "",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"publisher": "altipla",
 	"icon": "images/icon.png",
 	"repository": {
