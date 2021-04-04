@@ -36,5 +36,7 @@ module.exports = async function () {
     showText(await sh(['git', 'commit', '--amend', '-F', file]))
   } catch (err) {
     showText(err.message)
+  } finally {
+    fs.unlinkSync(file)
   }
 }
