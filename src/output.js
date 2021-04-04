@@ -14,12 +14,20 @@ function ensureOpen() {
 
 
 function showText(text) {
-  output.append(text)
+  if (text) {
+    output.append(text)
+  }
   output.show()
+}
+
+
+function appendText(text) {
+  output.append(text)
 }
 
 
 module.exports = {
   ensureOpen,
   showText,
+  appendText,
 }

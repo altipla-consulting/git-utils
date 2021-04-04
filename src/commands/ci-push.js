@@ -1,5 +1,5 @@
 
-const { sh } = require('../exec')
+const { shout } = require('../exec')
 const { ensureOpen, showText } = require('../output')
 
 
@@ -8,7 +8,7 @@ module.exports = async function () {
   showText('$ ci push\n')
 
   try {
-    showText(await sh(['ci', 'push']))
+    await shout(['ci', 'push'])
   } catch (err) {
     showText(err.message)
   }

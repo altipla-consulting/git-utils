@@ -2,9 +2,10 @@
 const cp = require('child_process')
 
 const { workspace } = require('vscode')
+const { appendText } = require('./output')
 
 
-async function sh(cmd, opts) {
+async function spawn(cmd, opts, process) {
   if (!opts) {
     opts = {}
   }
@@ -15,13 +16,26 @@ async function sh(cmd, opts) {
 
   return new Promise((resolve, reject) => {
     let proc = cp.spawn(cmd[0], cmd.slice(1), opts)
-
-    let output = ''
-    proc.stdout.on('data', data => output += data)
-    proc.stderr.on('data', data => output += data)
+    
+    proc.stdout.on('data', data => process(data.toString()))
+    proc.stderr.on('data', data => process(data.toString()))
   
-    proc.on('close', () => resolve(output))
+    proc.on('close', () => resolve(null))
     proc.on('error', err => reject(err))
+  })
+}
+
+
+async function sh(cmd, opts) {
+  let output = ''
+  await spawn(cmd, opts, data => output += data)
+  return output
+}
+
+
+async function shout(cmd, opts) {
+  await spawn(cmd, opts, data => {
+    appendText(data)
   })
 }
 
@@ -34,5 +48,6 @@ async function git(command) {
 
 module.exports = {
   sh,
+  shout,
   git,
 }

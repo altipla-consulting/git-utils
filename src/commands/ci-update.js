@@ -1,7 +1,7 @@
 
 const { window } = require('vscode')
 
-const { sh } = require('../exec')
+const { shout, sh } = require('../exec')
 const { ensureOpen, showText } = require('../output')
 
 
@@ -16,5 +16,5 @@ module.exports = async function () {
 
   ensureOpen()
   showText('$ ci update -f\n')
-  showText(await sh(['ci', 'update', '-f']))
+  await shout(['ci', 'update', '-f'])
 }
