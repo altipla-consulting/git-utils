@@ -39,7 +39,7 @@
 			},
 			{
 				"command": "git-utils.amendCommit",
-				"title": "Git: Amend Commit [altipla]"
+				"title": "Git: Amend [altipla]"
 			},
 			{
 				"command": "git-utils.unstageAll",
