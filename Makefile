@@ -3,5 +3,6 @@ build:
 	npm ci
 
 release:
-	@mkdir -p dist
-	@vsce package -o dist
+	npm run lint
+	mkdir -p dist
+	vsce package -o dist
