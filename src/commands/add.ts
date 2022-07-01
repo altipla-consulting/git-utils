@@ -53,7 +53,9 @@ export async function cmdAdd() {
       },
     })
 
-    let selected = await window.showQuickPick(items)
+    let selected = await window.showQuickPick(items, {
+      matchOnDescription: true,
+    })
     if (selected) {
       if (selected.add.file) {
         if (fs.existsSync(path.join(await gitRoot(), selected.add.file))) {
