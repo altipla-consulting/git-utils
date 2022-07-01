@@ -1,18 +1,27 @@
 
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
 
-const { window } = require('vscode')
+import { window } from 'vscode'
 
-const { git } = require('../exec')
-const { gitRoot } = require('../paths')
+import { git } from '../exec'
+import { gitRoot } from '../paths'
 
 
-module.exports = async function () {
+interface File {
+  label: string
+  description: string
+  add: {
+    file?: string
+    all?: boolean
+    untracked?: boolean
+  }
+}
 
-  while (true) {
+export async function cmdAdd() {
+  while (true) { // eslint-disable-line no-constant-condition
     let changes = await git(['git', 'status', '--porcelain'])
-    let items = changes
+    let items: File[] = changes
       .split('\n')
       .filter(change => !!change)
       .filter(change => change.charAt(1) !== ' ')
@@ -43,7 +52,7 @@ module.exports = async function () {
         all: true,
       },
     })
-    /** @type {Object} */
+
     let selected = await window.showQuickPick(items)
     if (selected) {
       if (selected.add.file) {

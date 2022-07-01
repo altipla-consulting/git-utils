@@ -1,11 +1,11 @@
 
-const { window, workspace } = require('vscode')
+import { window, workspace } from 'vscode'
 
-const { shout, sh } = require('../exec')
-const { ensureOpen, showText } = require('../output')
+import { shout, sh } from '../exec'
+import { ensureOpen, showText } from '../output'
 
 
-module.exports = async function () {
+export async function cmdCIUpdate() {
   if (!workspace.workspaceFolders) {
     window.showWarningMessage('Open a workspace to run this command.')
     return

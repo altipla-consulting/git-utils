@@ -26,7 +26,7 @@
 		"onCommand:git-utils.diff",
 		"onCommand:git-utils.ciUpdate"
 	],
-	"main": "./src/main.js",
+	"main": "./out/main.js",
 	"contributes": {
 		"commands": [
 			{
@@ -68,22 +68,26 @@
 		]
 	},
 	"scripts": {
-		"lint": "eslint .",
-		"pretest": "npm run lint",
-		"test": "node ./test/runTest.js"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": ""
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.55.0",
+		"@types/vscode": "^1.68.0",
 		"eslint": "^7.19.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.2.1",
-		"typescript": "^4.1.3",
+		"typescript": "^4.7.2",
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
+		"@altipla/eslint-config-ts": "^0.4.0",
 		"normalize-newline": "^3.0.0"
 	}
 }

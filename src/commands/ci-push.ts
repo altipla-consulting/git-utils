@@ -1,11 +1,11 @@
 
-const { window, workspace } = require('vscode')
+import { window, workspace } from 'vscode'
 
-const { shout } = require('../exec')
-const { ensureOpen, showText } = require('../output')
+import { shout } from '../exec'
+import { ensureOpen, showText } from '../output'
 
 
-module.exports = async function () {
+export async function cmdCIPush() {
   if (!workspace.workspaceFolders) {
     window.showWarningMessage('Open a workspace to run this command.')
     return
@@ -16,7 +16,7 @@ module.exports = async function () {
 
   try {
     await shout(['ci', 'push'])
-  } catch (err) {
+  } catch (err: any) {
     showText(err.message)
   }
 }
