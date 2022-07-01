@@ -10,7 +10,7 @@
 		"url": "https://github.com/altipla-consulting/git-utils.git"
 	},
 	"engines": {
-		"vscode": "^1.55.0"
+		"vscode": "^1.68.0"
 	},
 	"categories": [
 		"Other"
