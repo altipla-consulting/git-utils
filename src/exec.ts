@@ -10,6 +10,8 @@ async function spawn(cmd: string[], opts: cp.SpawnOptions | undefined, onData: (
   if (!opts.cwd && workspace.workspaceFolders) {
     opts.cwd = workspace.workspaceFolders[0].uri.path
   }
+  opts.env = {...process.env}
+  delete opts.env.ELECTRON_RUN_AS_NODE
   opts.stdio = ['ignore', 'pipe', 'pipe']
 
   return new Promise((resolve, reject) => {
