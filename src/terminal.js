@@ -1,13 +1,10 @@
-
 const normalizeNewline = require('normalize-newline')
 const { window, EventEmitter, ExtensionTerminalOptions: _ExtensionTerminalOptions, commands } = require('vscode')
 
-
 let messages = []
 
-
 function ensureOpen() {
-  let terminal = window.terminals.find(t => t.name === 'Git Utils')
+  let terminal = window.terminals.find((t) => t.name === 'Git Utils')
   if (!terminal) {
     let writeEmitter = new EventEmitter()
     // /** @type {_ExtensionTerminalOptions} */
@@ -16,11 +13,10 @@ function ensureOpen() {
       pty: {
         onDidWrite: writeEmitter.event,
         open: () => {
-          messages.forEach(msg => writeEmitter.fire(msg))
-          // @ts-ignore
-          messages.push = msg => writeEmitter.fire(msg)
+          messages.forEach((msg) => writeEmitter.fire(msg))
+          messages.push = (msg) => writeEmitter.fire(msg)
         },
-        close: () => { },
+        close: () => {},
       },
     }
     terminal = window.createTerminal(terminalOpts)
@@ -29,22 +25,19 @@ function ensureOpen() {
   }
 }
 
-
 function writeTerminal(msg) {
   messages.push(normalizeNewline(msg).replace(/\n/g, '\r\n'))
 }
 
-
 function showTerminal() {
-  let terminal = window.terminals.find(t => t.name === 'Git Utils')
+  let terminal = window.terminals.find((t) => t.name === 'Git Utils')
   if (terminal) {
     terminal.show()
     setTimeout(() => {
-      commands.executeCommand('workbench.action.terminal.kill')
+      void commands.executeCommand('workbench.action.terminal.kill')
     }, 4000)
   }
 }
-
 
 module.exports = {
   ensureOpen,

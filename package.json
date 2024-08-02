@@ -1,93 +1,89 @@
 {
-	"name": "git-utils",
-	"displayName": "Git Utils",
-	"description": "",
-	"version": "0.4.0",
-	"publisher": "altipla",
-	"icon": "images/icon.png",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/altipla-consulting/git-utils.git"
-	},
-	"engines": {
-		"vscode": "^1.68.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:git-utils.add",
-		"onCommand:git-utils.commit",
-		"onCommand:git-utils.amendCommit",
-		"onCommand:git-utils.unstageAll",
-		"onCommand:git-utils.unstage",
-		"onCommand:git-utils.ciPush",
-		"onCommand:git-utils.diffAll",
-		"onCommand:git-utils.diff",
-		"onCommand:git-utils.ciUpdate"
-	],
-	"main": "./out/main.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "git-utils.add",
-				"title": "Git: Add... [altipla]"
-			},
-			{
-				"command": "git-utils.commit",
-				"title": "Git: Commit [altipla]"
-			},
-			{
-				"command": "git-utils.amendCommit",
-				"title": "Git: Amend [altipla]"
-			},
-			{
-				"command": "git-utils.unstageAll",
-				"title": "Git: Reset (unstage) All [altipla]"
-			},
-			{
-				"command": "git-utils.unstage",
-				"title": "Git: Reset (unstage) Current File [altipla]"
-			},
-			{
-				"command": "git-utils.ciPush",
-				"title": "Git: CI Push [altipla]"
-			},
-			{
-				"command": "git-utils.diffAll",
-				"title": "Git: Diff All Files [altipla]"
-			},
-			{
-				"command": "git-utils.diff",
-				"title": "Git: Diff Current File [altipla]"
-			},
-			{
-				"command": "git-utils.ciUpdate",
-				"title": "Git: CI Update [altipla]"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": ""
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.68.0",
-		"eslint": "^7.19.0",
-		"glob": "^7.1.6",
-		"mocha": "^8.2.1",
-		"typescript": "^4.7.2",
-		"vscode-test": "^1.5.0"
-	},
-	"dependencies": {
-		"@altipla/eslint-config-ts": "^0.4.0",
-		"normalize-newline": "^3.0.0"
-	}
+  "name": "git-utils",
+  "displayName": "Git Utils",
+  "description": "",
+  "version": "0.4.0",
+  "publisher": "altipla",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altipla-consulting/git-utils.git"
+  },
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/main.cjs",
+  "type": "module",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-utils.add",
+        "title": "Git: Add... [altipla]"
+      },
+      {
+        "command": "git-utils.commit",
+        "title": "Git: Commit [altipla]"
+      },
+      {
+        "command": "git-utils.amendCommit",
+        "title": "Git: Amend [altipla]"
+      },
+      {
+        "command": "git-utils.unstageAll",
+        "title": "Git: Reset (unstage) All [altipla]"
+      },
+      {
+        "command": "git-utils.unstage",
+        "title": "Git: Reset (unstage) Current File [altipla]"
+      },
+      {
+        "command": "git-utils.ciPush",
+        "title": "Git: CI Push [altipla]"
+      },
+      {
+        "command": "git-utils.diffAll",
+        "title": "Git: Diff All Files [altipla]"
+      },
+      {
+        "command": "git-utils.diff",
+        "title": "Git: Diff Current File [altipla]"
+      },
+      {
+        "command": "git-utils.ciUpdate",
+        "title": "Git: CI Update [altipla]"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies",
+    "vscode:prepublish": "pnpm run compile --minify",
+    "compile": "esbuild ./src/main.ts --bundle --outfile=out/main.cjs --external:vscode --format=cjs --platform=node",
+    "watch": "npm-run-all -p watch:*",
+    "watch:compile": "pnpm run compile --watch",
+    "watch:types": "tsc --noEmit --watch --preserveWatchOutput",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "tsc --noEmit && eslint src --ext ts",
+    "test": ""
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.0.2",
+    "@types/vscode": "^1.92.0",
+    "esbuild": "^0.23.0",
+    "eslint": "^8.57.0",
+    "glob": "^11.0.0",
+    "mocha": "^10.7.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@altipla/eslint-config-ts": "^0.13.1",
+    "normalize-newline": "^4.1.0"
+  }
 }

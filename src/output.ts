@@ -1,9 +1,7 @@
-
-import { OutputChannel, window } from 'vscode'
-
+import { window } from 'vscode'
+import type { OutputChannel } from 'vscode'
 
 let output: OutputChannel
-
 
 export function ensureOpen() {
   if (!output) {
@@ -12,7 +10,6 @@ export function ensureOpen() {
   output.clear()
 }
 
-
 export function showText(text: string): void {
   if (text) {
     output.append(text)
@@ -20,8 +17,6 @@ export function showText(text: string): void {
   output.show()
 }
 
-
 export function appendText(text: string): void {
   output.append(text)
 }
-

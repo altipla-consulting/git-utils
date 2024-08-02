@@ -1,4 +1,3 @@
-
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -6,7 +5,6 @@ import { window } from 'vscode'
 
 import { git } from '../exec'
 import { gitRoot } from '../paths'
-
 
 interface File {
   label: string
@@ -19,13 +17,14 @@ interface File {
 }
 
 export async function cmdAdd() {
-  while (true) { // eslint-disable-line no-constant-condition
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
     let changes = await git(['git', 'status', '--porcelain'])
     let items: File[] = changes
       .split('\n')
-      .filter(change => !!change)
-      .filter(change => change.charAt(1) !== ' ')
-      .map(change => {
+      .filter((change) => !!change)
+      .filter((change) => change.charAt(1) !== ' ')
+      .map((change) => {
         return {
           label: change.substring(0, 2).trim(),
           description: change.substring(3),

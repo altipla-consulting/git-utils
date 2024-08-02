@@ -1,4 +1,3 @@
-
 import * as vscode from 'vscode'
 
 import { ensureOpen, showText } from './output'
@@ -12,20 +11,20 @@ import { cmdDiffAll } from './commands/diff-all'
 import { cmdDiff } from './commands/diff'
 import { cmdCIUpdate } from './commands/ci-update'
 
-
 function registerCommand(context: vscode.ExtensionContext, name: string, fn: () => Promise<void>): void {
-  context.subscriptions.push(vscode.commands.registerCommand(name, async function() {
-    try {
-      await fn()
-    } catch (err: any) {
-      console.error(err)
-      ensureOpen()
-      showText(`ERROR:\n${err.toString()}`)
-      throw err
-    }
-  }))
+  context.subscriptions.push(
+    vscode.commands.registerCommand(name, async function () {
+      try {
+        await fn()
+      } catch (err: any) {
+        console.error(err)
+        ensureOpen()
+        showText(`ERROR:\n${err.toString()}`)
+        throw err
+      }
+    }),
+  )
 }
-
 
 export function activate(context: vscode.ExtensionContext) {
   registerCommand(context, 'git-utils.add', cmdAdd)

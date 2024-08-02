@@ -1,4 +1,3 @@
-
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -8,14 +7,12 @@ import { gitRoot } from '../paths'
 import { git, sh } from '../exec'
 import { ensureOpen, showText } from '../output'
 
-
 const SEPARATOR = '# --------------'
-
 
 export async function cmdCommit() {
   let changes = await sh(['git', 'diff', '--cached'])
   if (!changes.length) {
-    window.showWarningMessage('No changes to commit')
+    await window.showWarningMessage('No changes to commit')
     return
   }
 

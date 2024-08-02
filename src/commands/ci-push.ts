@@ -1,13 +1,11 @@
-
 import { window, workspace } from 'vscode'
 
 import { shout } from '../exec'
 import { ensureOpen, showText } from '../output'
 
-
 export async function cmdCIPush() {
   if (!workspace.workspaceFolders) {
-    window.showWarningMessage('Open a workspace to run this command.')
+    await window.showWarningMessage('Open a workspace to run this command.')
     return
   }
 

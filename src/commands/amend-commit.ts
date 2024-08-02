@@ -1,4 +1,3 @@
-
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -6,9 +5,7 @@ import { gitRoot } from '../paths'
 import { git, sh } from '../exec'
 import { ensureOpen, showText } from '../output'
 
-
 const SEPARATOR = '# --------------'
-
 
 export async function cmdAmendCommit() {
   let lines = [
