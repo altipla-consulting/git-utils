@@ -13,3 +13,11 @@ export async function gitRoot(): Promise<string> {
   let result = await sh(['git', 'rev-parse', '--show-toplevel'])
   return result.trim()
 }
+
+export function isCursor(): boolean {
+  return process.argv[0].includes('.cursor-server')
+}
+
+export function cliCommand(): string {
+  return isCursor() ? 'cursor' : 'code'
+}

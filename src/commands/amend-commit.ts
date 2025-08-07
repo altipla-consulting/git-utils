@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-import { gitRoot } from '../paths'
+import { cliCommand, gitRoot } from '../paths'
 import { git, sh } from '../exec'
 import { ensureOpen, showText } from '../output'
 
@@ -19,7 +19,7 @@ export async function cmdAmendCommit() {
   let file = path.join(await gitRoot(), '.git', 'COMMIT_EDITMSG')
   fs.writeFileSync(file, lines.join('\n'), 'utf-8')
 
-  await sh(['code', '--wait', file])
+  await sh([cliCommand(), '--wait', file])
 
   let msg = fs.readFileSync(file, 'utf-8')
   if (msg.includes(SEPARATOR)) {
